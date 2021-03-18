@@ -8,4 +8,15 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+
+  a {
+    color: rgb(106, 106, 240);
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  a:visited {
+    color: none;
+  }
 }
