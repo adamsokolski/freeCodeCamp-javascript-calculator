@@ -1,10 +1,10 @@
 import React from "react";
 import "./Display.scss";
 
-export default function Display({ input }) {
+export default function Display({ displayEverything }) {
   return (
     <div id="display">
-      <p>{input}</p>
+      <p>{displayEverything}</p>
     </div>
   );
 }

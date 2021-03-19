@@ -3,7 +3,14 @@ import Display from "./Display";
 import Footer from "./Footer";
 import "./Calculator.scss";
 
-export default function Calculator({ input }) {
+export default function Calculator({
+  firstInput,
+  operators,
+  secondInput,
+  handleClick,
+}) {
+  let displayEverything = `${firstInput}${operators}${secondInput}`;
+
   const buttons = [
     { id: "zero", content: 0 },
     { id: "one", content: 1 },
@@ -23,14 +30,22 @@ export default function Calculator({ input }) {
     { id: "decimal", content: "." },
     { id: "clear", content: "C" },
   ];
+
   const buttonsDivs = buttons.map((x) => (
-    <div id={x.id} className="calculator-button" key={x.id}>
+    <div
+      id={x.id}
+      className="calculator-button"
+      key={x.id}
+      onClick={handleClick}
+    >
       <p>{x.content}</p>
     </div>
   ));
   return (
     <div className="calculator">
-      <Display input={input} />
+      <Display
+        displayEverything={displayEverything ? displayEverything : "0"}
+      />
       {buttonsDivs}
       <Footer />
     </div>
