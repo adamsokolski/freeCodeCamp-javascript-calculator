@@ -47,6 +47,15 @@
   }
 }
 
+@media only screen and (max-width: 900px) {
+  .calculator {
+    width: 100vw;
+  }
+  .display {
+    width: 100%;
+  }
+}
+
 #display {
   grid-area: display;
 }
