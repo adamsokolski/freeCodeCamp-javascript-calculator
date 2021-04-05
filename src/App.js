@@ -6,7 +6,7 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstInput: "asda",
+      firstInput: "",
       operators: "",
       secondInput: "",
     };
@@ -22,6 +22,54 @@ export default class App extends Component {
         firstInput: "",
         operators: "",
         secondInput: "",
+      });
+    } else if (!isNaN(parseInt(key))) {
+      // Numbers
+      if (this.state.operators === "") {
+        this.setState((state) => ({
+          firstInput: state.firstInput + key,
+        }));
+      } else {
+        this.setState((state) => ({
+          secondInput: state.secondInput + key,
+        }));
+      }
+    } else if (key === ".") {
+      // Float point
+      if (!this.state.firstInput.includes(".")) {
+        this.setState((state) => ({
+          firstInput: state.firstInput + key,
+        }));
+      }
+    } else if (key === "=") {
+      // Result
+      if (this.state.firstInput !== "" && this.state.secondInput !== "") {
+        let result = 0;
+        let firstNumber = parseInt(this.state.firstInput);
+        let secondNumber = parseInt(this.state.secondInput);
+        switch (this.state.operators) {
+          case "+":
+            result = firstNumber + secondNumber;
+            break;
+          case "-":
+            result = firstNumber - secondNumber;
+            break;
+          case "*":
+            result = firstNumber * secondNumber;
+            break;
+          case "/":
+            result = firstNumber / secondNumber;
+            break;
+        }
+        this.setState({
+          firstInput: result,
+          operators: "",
+          secondInput: "",
+        });
+      }
+    } else {
+      this.setState({
+        operators: key,
       });
     }
   }
